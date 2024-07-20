@@ -60,7 +60,17 @@ class clothing extends Product{
   }
 }
 
+// built-in class object in the javascript.
+/* const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString()); */
 
+function logThis() {
+  console.log(this)
+}
+
+logThis();
+logThis.call('hello'); // (this ) will be equal to hello
 
 
 export const products = [
