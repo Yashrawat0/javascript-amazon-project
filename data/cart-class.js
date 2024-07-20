@@ -4,10 +4,10 @@ class Cart {
 
     constructor (localStorageKey) {
         this.#localStorageKey = localStorageKey
-        this.loadFromStorage();
+        this.#loadFromStorage();
     }
 
-    loadFromStorage() {
+    #loadFromStorage() {  // this is a private method that means it can be used only inside the class and not outside the class.
         this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
       
         if (!this.cartItems) {

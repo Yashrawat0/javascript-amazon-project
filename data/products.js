@@ -35,28 +35,32 @@ class Product {
     return `$${formatCurrency(this.priceCents)}`
   }
 
+  extraInfoHTML() {
+    return ``;
+  }
 
 }
 
-const product1 = new Product(
-  {
-    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-    name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-    rating: {
-      stars: 4.5,
-      count: 87
-    },
-    priceCents: 1090,
-    keywords: [
-      "socks",
-      "sports",
-      "apparel"
-    ]
-  }
-);
 
-console.log(product1)
+class clothing extends Product{
+
+  sizeChartLink;
+
+  constructor(productDetails) {
+    super(productDetails) // it calls the constructor of the parent class means constructor of class product in this case.
+
+    this.sizeChartLink = productDetails.sizeChartLink
+  }
+
+
+  extraInfoHTML() {
+    return `
+      <a href="${this.sizeChartLink}" target="_black">Size chart</a>
+    `;
+  }
+}
+
+
 
 
 export const products = [
@@ -719,5 +723,9 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+
+    if (productDetails.type === "clothing") {
+      return new clothing(productDetails)
+    }
     return new Product(productDetails);
 })
